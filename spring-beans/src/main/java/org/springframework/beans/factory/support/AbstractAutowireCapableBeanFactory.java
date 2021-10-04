@@ -607,7 +607,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			Object earlySingletonReference = getSingleton(beanName, false);
 			if (earlySingletonReference != null) {
 				if (exposedObject == bean) {
-					exposedObject = earlySingletonReference;
+					exposedObject = earlySingletonReference;//不明白什么目的？bean和earlySingletonReference有什么不同？
 				}
 				else if (!this.allowRawInjectionDespiteWrapping && hasDependentBean(beanName)) {
 					String[] dependentBeans = getDependentBeans(beanName);
@@ -617,7 +617,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 							actualDependentBeans.add(dependentBean);
 						}
 					}
-					if (!actualDependentBeans.isEmpty()) {
+					if (!actualDependentBeans.isEmpty()) {//有其他bean依赖该bean，由于循环引用，该bean的raw version被注入依赖bean，但后来该bean被包装成了另外一个bean（比如通过动态代理），导致依赖bean中引用的不是该bean的最终版本
 						throw new BeanCurrentlyInCreationException(beanName,
 								"Bean with name '" + beanName + "' has been injected into other beans [" +
 								StringUtils.collectionToCommaDelimitedString(actualDependentBeans) +

@@ -1,6 +1,8 @@
 package com.zxy.springtest;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -20,6 +22,7 @@ public class Main {
 	public static void main(String[] args){
 
 		ApplicationContext ac =new AnnotationConfigApplicationContext(JavaConfig.class);
+		BeanFactory factory = new DefaultListableBeanFactory();
 		User user = (User) ac.getBean("user");
 		System.out.println(user.toString());
 		System.out.println("Hello world");
