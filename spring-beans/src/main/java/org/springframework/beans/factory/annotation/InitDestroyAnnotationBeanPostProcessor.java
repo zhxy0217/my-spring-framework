@@ -147,6 +147,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 	@Override
 	public void postProcessMergedBeanDefinition(RootBeanDefinition beanDefinition, Class<?> beanType, String beanName) {
 		LifecycleMetadata metadata = findLifecycleMetadata(beanType);
+		//将初始化方法和销毁方法分别注册到beanDefinition的 externallyManagedInitMethods 和 externallyManagedDestroyMethods中
 		metadata.checkConfigMembers(beanDefinition);
 	}
 
