@@ -1,5 +1,8 @@
 package aop;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class TestBean {
 	public String getTestStr() {
 		return testStr;
